@@ -77,7 +77,7 @@ def objective(trial):
     
     model = TransformerModel(learning_rate=learning_rate)
     
-    trainer = pl.Trainer(max_epochs=10, devices=1 if torch.cuda.is_available() else 0, accelerator="gpu", logger=False)
+    trainer = pl.Trainer(max_epochs=10, devices=-1 if torch.cuda.is_available() else 0, accelerator="gpu", logger=False)
     
     trainer.fit(model, train_dataloader, eval_dataloader)
     eval_result = trainer.evaluate()
